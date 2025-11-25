@@ -1,4 +1,5 @@
 /home/rbcurzon/eclipse-workspace/my-app/src/main/java/com/mycompany/app/App.java
+/home/rbcurzon/eclipse-workspace/my-app/src/main/java/com/mycompany/app/BroadcastingClient.java
+/home/rbcurzon/eclipse-workspace/my-app/src/main/java/com/mycompany/app/EchoServer.java
 /home/rbcurzon/eclipse-workspace/my-app/src/main/java/com/mycompany/app/Frame.java
-/home/rbcurzon/eclipse-workspace/my-app/src/main/java/com/mycompany/app/MulticastApp.java
 /home/rbcurzon/eclipse-workspace/my-app/src/main/java/com/mycompany/app/MulticastMessageListener.java

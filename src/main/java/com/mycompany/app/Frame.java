@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,7 +22,7 @@ public class Frame extends JFrame implements MulticastMessageListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	MulticastApp multicastApp;
+	Server server;
 	JTextArea messages;
 	JTextField messageField ;
 	JButton sendButton;
@@ -51,11 +53,12 @@ public class Frame extends JFrame implements MulticastMessageListener {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 
-		multicastApp = new MulticastApp("230.0.0.1", 4447, this);
-		multicastApp.listen();
+		server = new Server(this);
+		server.start();
 
 		messages = new JTextArea();
 		messages.setEditable(false);
+		messages.setFocusable(false);
 		messages.setPreferredSize(new Dimension(300, 200));
 
 		messageField = new JTextField();
@@ -65,8 +68,17 @@ public class Frame extends JFrame implements MulticastMessageListener {
 		sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String message = messageField.getText();
+				
+				if (message == null || message.trim().isEmpty()) {
+					return;
+				}
+				
 				try {
-					multicastApp.sendMessage(message);
+					List<InetAddress> addresses =  BroadcastingClient.listAllBroadcastAddresses();
+					for (InetAddress address: addresses) {
+						BroadcastingClient.broadcast(message, address);
+					}
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -93,12 +105,6 @@ public class Frame extends JFrame implements MulticastMessageListener {
 	public void onMessageReceived(String message) {
 		SwingUtilities.invokeLater(() -> {
 			messages.append("Other: " + message + "\n");
-		});
-		
-		if("end".equalsIgnoreCase(message.trim())) {
-			System.out.println("Multicast frame received shutdown command.");
-			multicastApp.shutdown();
-		};
-		
+		});		
 	}
 }
