@@ -9,16 +9,7 @@ public class Server extends Thread {
 
 	private DatagramSocket socket;
 	private boolean running;
-	private String receivedMessage;	
 	private MulticastMessageListener listener;
-	
-	public String getReceivedMessage() {
-		return receivedMessage;
-	}
-
-	public void setReceivedMessage(String receivedMessage) {
-		this.receivedMessage = receivedMessage;
-	}
 
 	private byte[] buf = new byte[256];
 
@@ -35,11 +26,12 @@ public class Server extends Thread {
 			try {
 				socket.receive(packet);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				System.out.println("Error Receiving packet.");
 				e.printStackTrace();
 			}
 
 			String received = new String(packet.getData(), 0, packet.getLength()).trim();
+
 			System.out.println("Received: " + received);
 			if ("end".equalsIgnoreCase(received)) {
 				System.out.println("Received end. Server stopping!");
