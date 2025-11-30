@@ -1,9 +1,8 @@
 # Java UDP Broadcast Server
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 
 An exploration into network communication using Java, implementing a **server** that manages incoming messages over the **User Datagram Protocol (UDP)** and broadcasts them to all connected clients.
 
-## 🌟 Features
+## Features
 
 * Asynchronous message handling via UDP sockets.
 * Simple Graphical User Interface (GUI) built with Swing for basic messaging.
@@ -11,7 +10,7 @@ An exploration into network communication using Java, implementing a **server** 
 
 ---
 
-## 🛠️ Installation
+## Installation
 
 This project is built with **Apache Maven**.
 
@@ -37,7 +36,7 @@ This project is built with **Apache Maven**.
 
 ---
 
-## 💻 Usage
+## Usage
 
 The application runs as a standalone server with a simple Swing Frame (GUI).
 

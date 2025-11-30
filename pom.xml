@@ -86,7 +86,7 @@
           <manifest>
             <addClasspath>true</addClasspath>
             <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>com.mycompany.app.Frame</mainClass>
+            <mainClass>com.mycompany.app.App</mainClass>
           </manifest>
         </archive>
       </configuration>
